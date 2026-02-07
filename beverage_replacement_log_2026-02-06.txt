@@ -1,0 +1,13 @@
+LOG THAY THẾ HÓA ĐƠN BIA/RƯỢU/COKE - 06/02/2026
+Tổng bia/rượu (thuế 10%) = đúng tổng ban đầu (thuế 8%). Chỉ điều chỉnh 1 món cuối.
+
+  1. Hóa đơn bị thay thế: 070092 - atm - 612.800đ.xlsx
+     → HĐ 070092, ATM, tổng 612,800đ. Món cuối: 367,091đ
+  2. Hóa đơn bị thay thế: 070064 - transfer - 1.447.200đ.xlsx
+     → HĐ 070064, TRANSFER, tổng 1,447,200đ. Món cuối: 1,185,636đ
+  3. Hóa đơn bị thay thế: 070086 - atm - 342.360đ.xlsx
+     → HĐ 070086, ATM, tổng 342,360đ. Món cuối: 101,236đ
+  4. Hóa đơn bị thay thế: 070054 - atm - 199.800đ.xlsx
+     → HĐ 070054, ATM, tổng 199,800đ. Món cuối: 126,636đ
+  5. Hóa đơn bị thay thế: 070012 - atm - 401.200đ.xlsx
+     → HĐ 070012, ATM, tổng 401,200đ. Món cuối: 234,727đ
