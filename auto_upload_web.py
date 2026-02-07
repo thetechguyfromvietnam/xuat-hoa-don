@@ -452,6 +452,24 @@ def api_grab_invoice():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
+@app.route('/api/beverage-replace', methods=['POST'])
+def api_beverage_replace():
+    """Thay 5 hóa đơn ngẫu nhiên trong tax_files bằng hóa đơn bia/rượu (Sapporo, Tiger Draught, Coke)."""
+    try:
+        from automation.daily_beverage_invoices import run_beverage_replacement
+        result = run_beverage_replacement()
+        if not result.get('success'):
+            return jsonify({"success": False, "error": result.get("error", "Lỗi không xác định")}), 400
+        return jsonify({
+            "success": True,
+            "replaced": result.get("replaced", []),
+            "log_lines": result.get("log_lines", []),
+            "log_file": result.get("log_file", ""),
+        })
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
 @app.route('/api/check-invoices', methods=['POST'])
 def check_invoices():
     """Chạy script kiểm tra hóa đơn - so sánh với menu gốc, không lưu file, chỉ trả về kết quả"""

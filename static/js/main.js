@@ -354,6 +354,38 @@ async function clearDataFiles() {
     }
 }
 
+// Thay 5 hóa đơn bia/rượu (Sapporo, Tiger, Coke) – tổng 10% = tổng gốc 8%, chỉ chỉnh món cuối
+async function runBeverageReplace() {
+    const btn = document.getElementById('btn-beverage-replace');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="btn-icon">⏳</span><span class="btn-text">Đang thay thế...</span>';
+
+    try {
+        const response = await fetch(`${API_BASE}/api/beverage-replace`, { method: 'POST' });
+        const data = await response.json();
+        const logPanel = document.getElementById('log-panel');
+
+        if (data.success) {
+            const entries = (data.log_lines || []).map(l => `<div class="log-entry">${escapeHtml(l)}</div>`).join('');
+            logPanel.innerHTML = `<div class="log-entry">🍺 Đã thay 5 hóa đơn bia/rượu</div>${entries}`;
+            logPanel.scrollTop = logPanel.scrollHeight;
+            refreshStatus();
+            if (data.replaced && data.replaced.length) {
+                setTimeout(() => loadBeverageInvoices(), 1500);
+            }
+        } else {
+            logPanel.innerHTML = `<div class="log-entry">❌ ${escapeHtml(data.error || 'Lỗi')}</div>`;
+        }
+    } catch (error) {
+        const logPanel = document.getElementById('log-panel');
+        logPanel.innerHTML = `<div class="log-entry">❌ Lỗi: ${escapeHtml(error.message)}</div>`;
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }
+}
+
 // Check invoices
 async function checkInvoices() {
     const btn = document.getElementById('btn-check');
